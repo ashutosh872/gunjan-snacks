@@ -33,9 +33,9 @@ export default function App() {
       if (params.get('view') === 'original') return 'original';
       if (params.get('view') === 'modern') return 'modern';
       const saved = localStorage.getItem('gunjan_snacks_view');
-      return saved || 'modern'; // Default to modern smart app (right toggle option)
+      return saved || 'original'; // Default to left toggle option: original blueprint
     } catch {
-      return 'modern';
+      return 'original';
     }
   });
 
@@ -240,7 +240,7 @@ export default function App() {
           }}
         />
       ) : (
-        <div className="min-h-screen bg-zinc-950 text-white flex flex-col font-sans selection:bg-orange-500 selection:text-white pb-20 sm:pb-0">
+        <div className="min-h-screen bg-zinc-950 text-white flex flex-col font-sans selection:bg-orange-500 selection:text-white pb-16 sm:pb-0">
           {/* Navbar */}
           <Navbar
             selectedBranch={selectedBranch}
@@ -408,12 +408,12 @@ export default function App() {
         </div>
       )}
 
-      {/* Persistent Floating Experience Switcher (Positioned on bottom-right of web) */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
+      {/* Persistent Floating Experience Switcher (Desktop/Web only - Hidden on mobile, Positioned on Bottom-Left) */}
+      <div className="hidden sm:flex fixed bottom-6 left-6 z-50">
         <div className="bg-zinc-950/95 text-white p-1.5 rounded-full shadow-2xl border-2 border-orange-500/80 flex items-center gap-1 backdrop-blur-md">
           <button
             onClick={() => handleToggleView('original')}
-            className={`px-3 sm:px-3.5 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer ${
               activeView === 'original'
                 ? 'bg-[#2F6B3F] text-white shadow-md'
                 : 'text-zinc-400 hover:text-white'
@@ -421,11 +421,11 @@ export default function App() {
             title="Switch to original gunjansnacks.in blueprint"
           >
             <span>🏛️</span>
-            <span className="hidden sm:inline">Original Blueprint</span>
+            <span>Original Blueprint</span>
           </button>
           <button
             onClick={() => handleToggleView('modern')}
-            className={`px-3 sm:px-3.5 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer ${
               activeView === 'modern'
                 ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg shadow-orange-950/60'
                 : 'text-zinc-400 hover:text-white'
@@ -433,7 +433,7 @@ export default function App() {
             title="Switch to modern social table dine-in app"
           >
             <span>⚡</span>
-            <span className="hidden sm:inline">Smart Table App</span>
+            <span>Smart Table App</span>
           </button>
         </div>
       </div>

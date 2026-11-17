@@ -76,14 +76,14 @@ export default function Navbar({
 
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center">
+              <h1 className="text-lg sm:text-2xl font-black tracking-tight text-white flex items-center">
                 GUNJAN <span className="text-orange-500 ml-1">SNACKS</span>
               </h1>
               <span className="hidden lg:inline-block text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 Amit Gunjan Da Dhaba
               </span>
             </div>
-            <p className="text-[11px] sm:text-xs text-zinc-400 font-medium">
+            <p className="text-[10px] sm:text-xs text-zinc-400 font-medium truncate max-w-[160px] sm:max-w-none">
               Pure Veg Chaap • Soya Momos • Nutri Kulche • Dum Biryani
             </p>
           </div>

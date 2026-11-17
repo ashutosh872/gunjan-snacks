@@ -209,7 +209,7 @@ export default function OriginalBlueprintView({
     <div className="min-h-screen bg-[#FFF8EC] text-[#2B1B12] font-['Nunito',sans-serif] selection:bg-[#2F6B3F] selection:text-white">
       
       {/* 1. TOP DUAL-MODE TOGGLE & NOTICE BANNER */}
-      <div className="bg-[#402315] text-[#FFF8EC] text-xs py-2 px-4 shadow-md sticky top-0 z-50">
+      <div className="bg-[#402315] text-[#FFF8EC] text-xs py-2 px-4 shadow-md relative z-30">
         <div className="max-w-[1120px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2 text-center sm:text-left">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -233,7 +233,8 @@ export default function OriginalBlueprintView({
               }`}
             >
               <span>🏛️</span>
-              <span>Original Blueprint</span>
+              <span className="hidden sm:inline">Original Blueprint</span>
+              <span className="sm:hidden text-[11px]">Original</span>
             </button>
             <button
               onClick={() => onToggleView('modern')}
@@ -244,14 +245,15 @@ export default function OriginalBlueprintView({
               }`}
             >
               <span>⚡</span>
-              <span>Smart Table-Dine App</span>
+              <span className="hidden sm:inline">Smart Table-Dine App</span>
+              <span className="sm:hidden text-[11px]">Smart App</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* 2. STICKY HEADER & NAVBAR (Matching gunjansnacks.in) */}
-      <header className="sticky top-[38px] z-40 bg-[#FFF8EC]/95 backdrop-blur-md border-b border-[#E7D7C3] transition-all">
+      <header className="sticky top-0 z-40 bg-[#FFF8EC]/95 backdrop-blur-md border-b border-[#E7D7C3] transition-all">
         <div className="max-w-[1120px] mx-auto px-4 py-3 flex items-center justify-between gap-4">
           
           {/* Brand Logo with Chef Hat */}
@@ -1114,6 +1116,26 @@ export default function OriginalBlueprintView({
         </div>
       </footer>
 
+      {/* Mobile Floating Cart Summary Bar */}
+      {cartCount > 0 && (
+        <div className="sm:hidden fixed bottom-3 left-3 right-3 z-40 bg-[#2F6B3F] text-white rounded-2xl p-3 shadow-2xl flex items-center justify-between border border-emerald-400/40">
+          <div className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center font-bold text-xs">{cartCount}</span>
+            <div>
+              <div className="font-['Sora',sans-serif] font-bold text-xs">₹{cartSubtotal} Total</div>
+              <div className="text-[10px] text-emerald-100">{cartCount} items in cart</div>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="bg-white text-[#2F6B3F] px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 shadow cursor-pointer"
+          >
+            <span>View Cart</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
       {/* 11. SLIDE-OVER WHATSAPP ORDER CART DRAWER */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
@@ -1124,7 +1146,7 @@ export default function OriginalBlueprintView({
           ></div>
 
           {/* Drawer Panel */}
-          <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+          <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
             <div className="w-screen max-w-md bg-[#FFFDF9] border-l border-[#E7D7C3] shadow-2xl flex flex-col justify-between">
               
               {/* Header */}

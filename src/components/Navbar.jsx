@@ -18,7 +18,9 @@ export default function Navbar({
   cartItems, 
   onOpenCart, 
   onOpenOrdersModal, 
-  onOpenBranchModal 
+  onOpenBranchModal,
+  onToggleView,
+  activeView
 }) {
   const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -141,8 +143,38 @@ export default function Navbar({
           )}
         </div>
 
-        {/* Action Buttons: Track Order & Cart */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Action Buttons: View Switcher, Track Order & Cart */}
+        <div className="flex items-center gap-1.5 sm:gap-3">
+          {/* Dual Experience Switcher */}
+          {onToggleView && (
+            <div className="flex items-center bg-zinc-900 border border-zinc-700/80 p-0.5 rounded-lg text-xs shrink-0">
+              <button
+                onClick={() => onToggleView('original')}
+                className={`px-2 sm:px-2.5 py-1 rounded-md font-bold text-[11px] sm:text-xs transition flex items-center gap-1 ${
+                  activeView === 'original'
+                    ? 'bg-[#FFF8EC] text-[#402315] shadow'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+                title="Switch to original gunjansnacks.in blueprint"
+              >
+                <span>🏛️</span>
+                <span className="hidden sm:inline">Original Blueprint</span>
+              </button>
+              <button
+                onClick={() => onToggleView('modern')}
+                className={`px-2 sm:px-2.5 py-1 rounded-md font-bold text-[11px] sm:text-xs transition flex items-center gap-1 ${
+                  activeView === 'modern'
+                    ? 'bg-orange-600 text-white shadow'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+                title="Switch to modern social table dine-in app"
+              >
+                <span>⚡</span>
+                <span className="hidden sm:inline">Smart App</span>
+              </button>
+            </div>
+          )}
+
           {/* Past Orders Tracker Button */}
           <button
             onClick={onOpenOrdersModal}

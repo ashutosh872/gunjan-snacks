@@ -3,7 +3,7 @@
 > **100% Pure Veg Chaap Hub • Amritsari Nutri Kulche • Kurkure Soya Momos • Dum Biryani**
 >
 > 🌐 **Live Website:** [https://ashutosh872.github.io/gunjan-snacks/](https://ashutosh872.github.io/gunjan-snacks/)  
-> 📱 **Direct WhatsApp Dispatch Hotline:** `+91 93106 81373`
+> 📱 **Direct WhatsApp Dispatch Hotline:** `+91 98765 00000`
 
 ---
 
@@ -13,7 +13,7 @@
 
 > **"VISIT • SCAN • BOOK • GET ON TABLE"**
 
-Customers visit either of our outlets, scan the hero QR standee with their smartphone camera, browse our authentic 100% Pure Veg menu, select their table or takeaway counter, and place their order. The kitchen and owner (`9310681373`) immediately receive the verified order with token number, table designation, itemized list, and customer phone via WhatsApp.
+Customers visit either of our outlets, scan the hero QR standee with their smartphone camera, browse our authentic 100% Pure Veg menu, select their table or takeaway counter, and place their order. The kitchen and owner (`+91 98765 00000`) immediately receive the verified order with token number, table designation, itemized list, and customer phone via WhatsApp.
 
 ---
 

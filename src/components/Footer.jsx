@@ -100,7 +100,7 @@ export default function Footer({ onOpenQrModal, onOpenBranchModal }) {
             </button>
 
             <a
-              href="https://wa.me/919310681373"
+              href="https://wa.me/919876500000"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-emerald-700/30 hover:bg-emerald-700/40 border border-emerald-500/40 text-emerald-300 font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition"

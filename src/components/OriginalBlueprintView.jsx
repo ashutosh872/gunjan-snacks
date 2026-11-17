@@ -29,6 +29,8 @@ import { branches, SHOP_HOTLINE_PHONE } from '../data/branchesData';
 import { calculateCartTotals } from '../utils/discountCalculator';
 import { getFoodFallbackImage } from '../utils/imageFallback';
 
+const BASE = import.meta.env.BASE_URL || '/';
+
 export default function OriginalBlueprintView({
   cartItems,
   onAddToCart,
@@ -46,7 +48,7 @@ export default function OriginalBlueprintView({
   // Selected Branch for Contact & Order
   const [selectedOutlet, setSelectedOutlet] = useState('vijay-enclave');
   
-  // Cart Form State
+  // Cart Form State (Dummy customer defaults)
   const [custName, setCustName] = useState('');
   const [custPhone, setCustPhone] = useState('');
   const [pickupDate, setPickupDate] = useState('Today');
@@ -95,14 +97,14 @@ export default function OriginalBlueprintView({
   const cartTotals = useMemo(() => calculateCartTotals(cartItems), [cartItems]);
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  // Best Sellers (Subset for showcase)
+  // Best Sellers (Subset for showcase with fallback image safety)
   const bestSellers = useMemo(() => {
     return [
       {
         id: 'chap-afghani',
         name: 'Afghani Chaap',
         desc: 'Succulent soya chaap marinated in creamy afghani sauce, grilled to smoky perfection.',
-        image: menuItems.find(i => i.id === 'chap-afghani')?.image || '/images/afghani-chaap.jpg',
+        image: menuItems.find(i => i.id === 'chap-afghani')?.image || `${BASE}images/afghani-chaap.jpg`,
         priceHalf: 110,
         priceFull: 200,
         tags: ['BEST SELLER', 'CREAMY'],
@@ -112,7 +114,7 @@ export default function OriginalBlueprintView({
         id: 'chap-malai',
         name: 'Tandoori Malai Chaap',
         desc: 'Soft, rich malai-marinated soya chaap with a delicate creaminess — melt-in-mouth good.',
-        image: menuItems.find(i => i.id === 'chap-malai')?.image || '/images/tandoori-malai-chaap.jpg',
+        image: menuItems.find(i => i.id === 'chap-malai')?.image || `${BASE}images/tandoori-malai-chaap.jpg`,
         priceHalf: 110,
         priceFull: 200,
         tags: ['CREAMY', 'VEG'],
@@ -122,7 +124,7 @@ export default function OriginalBlueprintView({
         id: 'chap-tandoori-masala',
         name: 'Delhi Masala Chaap',
         desc: 'Bold spice-rubbed chaap grilled over high heat — deeply smoky and dangerously tasty.',
-        image: menuItems.find(i => i.id === 'chap-tandoori-masala')?.image || '/images/delhi-masala-chaap.jpg',
+        image: menuItems.find(i => i.id === 'chap-tandoori-masala')?.image || `${BASE}images/delhi-masala-chaap.jpg`,
         priceHalf: 110,
         priceFull: 200,
         tags: ['SPICY', 'TANDOORI'],
@@ -132,7 +134,7 @@ export default function OriginalBlueprintView({
         id: 'momos-tandoori',
         name: 'Tandoori Soya Momos',
         desc: 'Plump pure veg dumplings charred in clay tandoor with spicy tikka marination.',
-        image: menuItems.find(i => i.id === 'momos-tandoori')?.image || '/images/tandoori-momos.jpg',
+        image: menuItems.find(i => i.id === 'momos-tandoori')?.image || `${BASE}images/tandoori-momos.jpg`,
         priceHalf: 120,
         priceFull: 220,
         tags: ['BEST SELLER', 'SPICY'],
@@ -142,7 +144,7 @@ export default function OriginalBlueprintView({
         id: 'momos-kurkure',
         name: 'Kurkure Crunchy Momos',
         desc: 'Double crunchy outer crust with juicy seasoned soya filling. Served with garlic dip.',
-        image: menuItems.find(i => i.id === 'momos-kurkure')?.image || '/images/kurkure-soya-momos.jpg',
+        image: menuItems.find(i => i.id === 'momos-kurkure')?.image || `${BASE}images/kurkure-soya-momos.jpg`,
         priceHalf: 120,
         priceFull: 220,
         tags: ['CRUNCHY', 'FAVOURITE'],
@@ -152,7 +154,7 @@ export default function OriginalBlueprintView({
         id: 'nutri-amritsari',
         name: 'Amritsari Nutri Kulche',
         desc: 'Rich buttery slow-cooked nutri chunks served with double butter toasted kulchas.',
-        image: menuItems.find(i => i.id === 'nutri-amritsari')?.image || '/images/amritsari-nutri-kulche.jpg',
+        image: menuItems.find(i => i.id === 'nutri-amritsari')?.image || `${BASE}images/amritsari-nutri-kulche.jpg`,
         priceHalf: 120,
         priceFull: 220,
         tags: ['SIGNATURE', 'PUNJABI'],
@@ -161,7 +163,7 @@ export default function OriginalBlueprintView({
     ];
   }, []);
 
-  // WhatsApp Checkout Handler
+  // WhatsApp Checkout Handler (Uses dummy phone target)
   const handleSendWhatsAppOrder = (e) => {
     e?.preventDefault();
     if (cartItems.length === 0) {
@@ -174,7 +176,7 @@ export default function OriginalBlueprintView({
     }
 
     const outletObj = selectedOutlet === 'vijay-enclave' ? branches[0] : branches[1];
-    const targetPhone = SHOP_HOTLINE_PHONE; // Dispatches to primary owner 9310681373
+    const targetPhone = SHOP_HOTLINE_PHONE; // Dummy hotline 9876500000
 
     let text = `*GUNJAN SNACKS - NEW ORDER INQUIRY*\n`;
     text += `------------------------------------\n`;
@@ -216,7 +218,7 @@ export default function OriginalBlueprintView({
             </span>
             <span className="hidden md:inline text-zinc-400">|</span>
             <span className="hidden md:inline text-zinc-300">
-              Evening Specials: 5:00 PM – 11:30 PM • Hotline: +91 93106 81373
+              Evening Specials: 5:00 PM – 11:30 PM • Hotline: +91 98765 00000
             </span>
           </div>
 
@@ -389,8 +391,11 @@ export default function OriginalBlueprintView({
             <div className="relative w-full max-w-[340px] bg-white rounded-3xl p-3.5 shadow-xl border border-[#E7D7C3] transform -rotate-1 hover:rotate-0 transition-transform duration-300">
               <div className="relative h-48 w-full rounded-2xl overflow-hidden bg-[#F8EFE1]">
                 <img
-                  src={menuItems[0]?.image || '/images/tandoori-malai-chaap.jpg'}
+                  src={menuItems[0]?.image || `${BASE}images/tandoori-malai-chaap.jpg`}
                   alt="Tandoori Malai Chaap"
+                  onError={(e) => {
+                    e.currentTarget.src = getFoodFallbackImage('Tandoori Malai Chaap', 'chaps');
+                  }}
                   className="w-full h-full object-cover"
                 />
                 <span className="absolute top-2.5 right-2.5 bg-[#9F2F25] text-white text-[10px] font-black px-2 py-0.5 rounded shadow">
@@ -434,8 +439,11 @@ export default function OriginalBlueprintView({
             <div className="hidden sm:block absolute -bottom-6 -left-4 w-60 bg-white rounded-2xl p-2.5 shadow-2xl border border-[#E7D7C3] transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="h-28 w-full rounded-xl overflow-hidden bg-[#F8EFE1]">
                 <img
-                  src={menuItems[10]?.image || '/images/tandoori-momos.jpg'}
+                  src={menuItems[10]?.image || `${BASE}images/tandoori-momos.jpg`}
                   alt="Tandoori Momos"
+                  onError={(e) => {
+                    e.currentTarget.src = getFoodFallbackImage('Tandoori Momos', 'momos');
+                  }}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -488,6 +496,9 @@ export default function OriginalBlueprintView({
                   <img
                     src={item.image}
                     alt={item.name}
+                    onError={(e) => {
+                      e.currentTarget.src = getFoodFallbackImage(item.name, 'chaps');
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -594,7 +605,7 @@ export default function OriginalBlueprintView({
             <div className="bg-white rounded-2xl p-4 text-center border border-[#E7D7C3] shadow-sm">
               <span className="text-xs font-extrabold uppercase tracking-wider text-[#E9B85B] block mb-1">40+</span>
               <h4 className="font-['Sora',sans-serif] font-bold text-sm text-[#402315]">Local Favourite</h4>
-              <p className="text-xs text-[#715F50] mt-0.5">Snacks near Uttam Nagar</p>
+              <p className="text-xs text-[#715F50] mt-0.5">Delhi Street Swaad</p>
             </div>
           </div>
         </div>
@@ -607,7 +618,7 @@ export default function OriginalBlueprintView({
             SNACKS • MEALS • SWEETS • SPECIALS
           </span>
           <h2 className="font-['Sora',sans-serif] text-2xl sm:text-3xl font-extrabold text-[#402315]">
-            Menu for fresh homemade food near Uttam Nagar
+            Menu for fresh homemade food in Delhi
           </h2>
           <p className="text-sm text-[#715F50]">
             Browse quick snacks, filling meals and seasonal sweets. Tap any item to ask availability and price on WhatsApp or add to cart.
@@ -649,7 +660,7 @@ export default function OriginalBlueprintView({
           ))}
         </div>
 
-        {/* Live Search & Filter Bar (Improvement Feature) */}
+        {/* Live Search & Filter Bar */}
         <div className="bg-white rounded-2xl p-3 border border-[#E7D7C3] shadow-sm mb-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="relative w-full sm:w-72">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
@@ -692,6 +703,9 @@ export default function OriginalBlueprintView({
                   <img
                     src={item.image}
                     alt={item.name}
+                    onError={(e) => {
+                      e.currentTarget.src = getFoodFallbackImage(item.name, item.category);
+                    }}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -749,7 +763,7 @@ export default function OriginalBlueprintView({
         </div>
       </section>
 
-      {/* 7. PHOTO GALLERY (Exact Blueprint from gunjansnacks.in) */}
+      {/* 7. PHOTO GALLERY */}
       <section id="gallery" className="py-14 px-4 bg-[#F8EFE1] border-y border-[#E7D7C3]">
         <div className="max-w-[1120px] mx-auto">
           <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
@@ -764,12 +778,12 @@ export default function OriginalBlueprintView({
           {/* Photo Gallery Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
-              { title: 'Soya Chaap Platter', img: '/images/afghani-chaap.jpg' },
-              { title: 'Paneer Malai Tikka', img: '/images/tandoori-malai-chaap.jpg' },
-              { title: 'Tandoori Momos Platter', img: '/images/tandoori-momos.jpg' },
-              { title: 'Rumali Roti & Curry', img: '/images/rumali-roti.jpg' },
-              { title: 'Amritsari Nutri Kulche', img: '/images/amritsari-nutri-kulche.jpg' },
-              { title: 'Dum Biryani Clay Handi', img: '/images/veg-soya-biryani.jpg' }
+              { title: 'Soya Chaap Platter', img: `${BASE}images/afghani-chaap.jpg` },
+              { title: 'Paneer Malai Tikka', img: `${BASE}images/tandoori-malai-chaap.jpg` },
+              { title: 'Tandoori Momos Platter', img: `${BASE}images/tandoori-momos.jpg` },
+              { title: 'Rumali Roti & Curry', img: `${BASE}images/rumali-roti.jpg` },
+              { title: 'Amritsari Nutri Kulche', img: `${BASE}images/amritsari-nutri-kulche.jpg` },
+              { title: 'Dum Biryani Clay Handi', img: `${BASE}images/veg-soya-biryani.jpg` }
             ].map((photo, i) => (
               <div
                 key={i}
@@ -778,6 +792,9 @@ export default function OriginalBlueprintView({
                 <img
                   src={photo.img}
                   alt={photo.title}
+                  onError={(e) => {
+                    e.currentTarget.src = getFoodFallbackImage(photo.title, 'chaps');
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90"></div>
@@ -802,14 +819,14 @@ export default function OriginalBlueprintView({
             Find us on Google
           </h2>
           <p className="text-sm text-[#715F50] mt-1 max-w-xl mx-auto">
-            Check the main outlet or C 6 60 Futa Road branch, get directions, or leave a review.
+            Check our outlets, get directions, or leave a review.
           </p>
         </div>
 
-        {/* Review Action Buttons (Matching gunjansnacks.in) */}
+        {/* Review Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
-            href="https://maps.google.com/?q=Gunjan+Snacks+Vijay+Enclave+New+Delhi"
+            href="https://maps.google.com/?q=Gunjan+Snacks+New+Delhi"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white border border-[#E7D7C3] hover:border-[#2F6B3F] text-[#402315] px-5 py-2.5 rounded-full font-['Sora',sans-serif] text-xs font-bold shadow-sm transition-all flex items-center gap-2"
@@ -819,7 +836,7 @@ export default function OriginalBlueprintView({
           </a>
 
           <a
-            href="https://maps.google.com/?q=36A+Block+B+Vijay+Enclave+Mahavir+Enclave+New+Delhi"
+            href="https://maps.google.com/?q=Connaught+Place+New+Delhi"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white border border-[#E7D7C3] hover:border-[#2F6B3F] text-[#402315] px-5 py-2.5 rounded-full font-['Sora',sans-serif] text-xs font-bold shadow-sm transition-all flex items-center gap-2"
@@ -829,7 +846,7 @@ export default function OriginalBlueprintView({
           </a>
 
           <a
-            href="https://maps.google.com/?q=C+6+60+Futa+Road+Mahavir+Enclave+Part+2+New+Delhi"
+            href="https://maps.google.com/?q=India+Gate+New+Delhi"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white border border-[#E7D7C3] hover:border-[#2F6B3F] text-[#402315] px-5 py-2.5 rounded-full font-['Sora',sans-serif] text-xs font-bold shadow-sm transition-all flex items-center gap-2"
@@ -844,7 +861,7 @@ export default function OriginalBlueprintView({
           <div className="bg-white p-4 rounded-2xl border border-[#E7D7C3] shadow-sm">
             <div className="flex text-amber-500 mb-2">★★★★★</div>
             <p className="text-xs text-[#715F50] italic leading-relaxed">
-              "Best Malai Chaap near Mahavir Enclave. Truly melt in mouth with ample butter and cream. Highly recommended!"
+              "Best Malai Chaap in town! Truly melt-in-mouth with rich butter and cashew cream. Highly recommended!"
             </p>
             <span className="block font-bold text-xs text-[#402315] mt-2">— Gaurav Sharma (Local Guide)</span>
           </div>
@@ -867,7 +884,7 @@ export default function OriginalBlueprintView({
         </div>
       </section>
 
-      {/* 9. CONTACT & OUTLETS SECTION (Exact Blueprint from gunjansnacks.in) */}
+      {/* 9. CONTACT & OUTLETS SECTION (Using 100% Dummy Details) */}
       <section id="contact" className="py-16 px-4 bg-[#F8EFE1] border-t border-[#E7D7C3]">
         <div className="max-w-[1120px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
@@ -877,20 +894,20 @@ export default function OriginalBlueprintView({
               Gunjan Snacks
             </h2>
 
-            {/* Phone Outlets */}
+            {/* Phone Outlets (Dummy details) */}
             <div className="flex items-start gap-3">
               <span className="w-8 h-8 rounded-lg bg-[#2F6B3F]/10 text-[#2F6B3F] flex items-center justify-center font-bold text-xs shrink-0">
                 Ph
               </span>
               <div className="text-sm">
-                <span className="font-bold text-[#402315] block">Phone / WhatsApp Outlets</span>
-                <p className="text-[#715F50] mt-0.5">Vijay Enclave: <a href="tel:+919069453542" className="text-[#2F6B3F] font-bold hover:underline">+91 9069453542</a></p>
-                <p className="text-[#715F50]">Futa Road (Part 2): <a href="tel:+918813002513" className="text-[#2F6B3F] font-bold hover:underline">+91 8813002513</a> / <a href="tel:+919999039366" className="text-[#2F6B3F] font-bold hover:underline">+91 9999039366</a></p>
-                <p className="text-[#9F2F25] font-bold mt-1">Owner Hotline: <a href="tel:+919310681373" className="hover:underline">+91 93106 81373</a></p>
+                <span className="font-bold text-[#402315] block">Phone / WhatsApp Outlets (Demo)</span>
+                <p className="text-[#715F50] mt-0.5">Outlet 1 (Central Plaza): <a href="tel:+919876511111" className="text-[#2F6B3F] font-bold hover:underline">+91 98765 11111</a></p>
+                <p className="text-[#715F50]">Outlet 2 (Galleria Food Street): <a href="tel:+919876522222" className="text-[#2F6B3F] font-bold hover:underline">+91 98765 22222</a></p>
+                <p className="text-[#9F2F25] font-bold mt-1">Shop Order Hotline: <a href="tel:+919876500000" className="hover:underline">+91 98765 00000</a></p>
               </div>
             </div>
 
-            {/* Outlets Locations */}
+            {/* Outlets Locations (Clean dummy addresses) */}
             <div className="flex items-start gap-3">
               <span className="w-8 h-8 rounded-lg bg-[#C96F3A]/10 text-[#C96F3A] flex items-center justify-center font-bold text-xs shrink-0">
                 Adr
@@ -898,10 +915,10 @@ export default function OriginalBlueprintView({
               <div className="text-sm">
                 <span className="font-bold text-[#402315] block">Outlets Locations</span>
                 <p className="text-[#715F50] mt-0.5">
-                  <strong>Vijay Enclave Outlet:</strong> 36A, Block B, Vijay Enclave, Mahavir Enclave, New Delhi, Delhi 110045
+                  <strong>Outlet 1 (Central Plaza):</strong> Shop No. 14, Central Market Food Plaza, Main Market, New Delhi 110001
                 </p>
                 <p className="text-[#715F50] mt-1.5">
-                  <strong>Futa Road Outlet:</strong> C 6 60, Futa Road, Part-III, Mahavir Enclave Part 2, Uttam Nagar, New Delhi 110059
+                  <strong>Outlet 2 (Galleria):</strong> Booth No. 8, Galleria Food Street, Urban Chowk, New Delhi 110001
                 </p>
               </div>
             </div>
@@ -921,19 +938,19 @@ export default function OriginalBlueprintView({
             {/* Direct Calling & Action Buttons */}
             <div className="pt-2 flex flex-wrap gap-2.5">
               <a
-                href="tel:+919069453542"
+                href="tel:+919876511111"
                 className="bg-[#244B2F] hover:bg-[#1E3F28] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
               >
                 <Phone className="w-3.5 h-3.5" />
-                <span>Call Vijay Enclave</span>
+                <span>Call Outlet 1</span>
               </a>
 
               <a
-                href="tel:+918813002513"
+                href="tel:+919876522222"
                 className="bg-[#244B2F] hover:bg-[#1E3F28] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
               >
                 <Phone className="w-3.5 h-3.5" />
-                <span>Call Futa Road</span>
+                <span>Call Outlet 2</span>
               </a>
 
               <button
@@ -952,12 +969,12 @@ export default function OriginalBlueprintView({
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="font-['Sora',sans-serif] font-bold text-base text-[#402315]">
-                  {mapOutlet === 'vijay-enclave' ? 'Main Outlet: Vijay Enclave' : 'Branch: C 6 60 Futa Road'}
+                  {mapOutlet === 'vijay-enclave' ? 'Main Outlet: Central Plaza' : 'Branch: Galleria Food Street'}
                 </h4>
                 <p className="text-xs text-[#715F50]">
                   {mapOutlet === 'vijay-enclave'
-                    ? '36A, Block B, Vijay Enclave, Mahavir Enclave'
-                    : 'C 6 60, Futa Road Part 2, Uttam Nagar'}
+                    ? 'Shop No. 14, Central Market Food Plaza, New Delhi'
+                    : 'Booth No. 8, Galleria Food Street, Urban Chowk, New Delhi'}
                 </p>
               </div>
 
@@ -996,9 +1013,9 @@ export default function OriginalBlueprintView({
                 loading="lazy"
                 src={`https://maps.google.com/maps?q=${
                   mapOutlet === 'vijay-enclave'
-                    ? '36A+Block+B+Vijay+Enclave+Mahavir+Enclave+New+Delhi'
-                    : 'C+6+60+Futa+Road+Mahavir+Enclave+Part+2+New+Delhi'
-                }&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                    ? 'Connaught+Place+New+Delhi'
+                    : 'India+Gate+New+Delhi'
+                }&t=&z=14&ie=UTF8&iwloc=&output=embed`}
               ></iframe>
             </div>
 
@@ -1009,8 +1026,8 @@ export default function OriginalBlueprintView({
               <a
                 href={
                   mapOutlet === 'vijay-enclave'
-                    ? 'https://maps.google.com/?q=36A+Block+B+Vijay+Enclave+Mahavir+Enclave+New+Delhi'
-                    : 'https://maps.google.com/?q=C+6+60+Futa+Road+Mahavir+Enclave+Part+2+New+Delhi'
+                    ? 'https://maps.google.com/?q=Connaught+Place+New+Delhi'
+                    : 'https://maps.google.com/?q=India+Gate+New+Delhi'
                 }
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1026,7 +1043,7 @@ export default function OriginalBlueprintView({
         </div>
       </section>
 
-      {/* 10. DEEP FOREST GREEN FOOTER (Exact Blueprint from gunjansnacks.in) */}
+      {/* 10. DEEP FOREST GREEN FOOTER */}
       <footer className="bg-[#1B3822] text-[#FFF8EC] pt-14 pb-8 px-4 border-t border-[#122818]">
         <div className="max-w-[1120px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-white/10">
           
@@ -1042,7 +1059,7 @@ export default function OriginalBlueprintView({
             </div>
 
             <p className="text-xs text-zinc-300 leading-relaxed max-w-sm">
-              A warm local 100% veg snacks and meals brand near Uttam Nagar, Mahavir Enclave and C 6 60 Futa Road, Mahavir Enclave Part 2. Fresh daily, hygienically prepared, packed hot, and easy to order on WhatsApp.
+              A warm local 100% pure veg snacks and meals brand. Fresh daily, hygienically prepared, packed hot, and easy to order on WhatsApp.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-1 text-[11px] font-bold">
@@ -1093,11 +1110,11 @@ export default function OriginalBlueprintView({
         {/* Copyright */}
         <div className="max-w-[1120px] mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-400 gap-2">
           <span>© 2026 Gunjan Snacks. All rights reserved. 100% Pure Veg.</span>
-          <span>Hotline: +91 93106 81373 • Delhi Street Swaad</span>
+          <span>Hotline: +91 98765 00000 • Delhi Street Swaad</span>
         </div>
       </footer>
 
-      {/* 11. SLIDE-OVER WHATSAPP ORDER CART DRAWER (Exact Blueprint from gunjansnacks.in) */}
+      {/* 11. SLIDE-OVER WHATSAPP ORDER CART DRAWER */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
           {/* Backdrop */}
@@ -1156,6 +1173,9 @@ export default function OriginalBlueprintView({
                           <img
                             src={item.image}
                             alt={item.name}
+                            onError={(e) => {
+                              e.currentTarget.src = getFoodFallbackImage(item.name, item.category);
+                            }}
                             className="w-12 h-12 rounded-lg object-cover bg-zinc-100"
                           />
                           <div>
@@ -1219,7 +1239,7 @@ export default function OriginalBlueprintView({
                   </div>
                 )}
 
-                {/* Customer Details Form (Matching gunjansnacks.in inputs) */}
+                {/* Customer Details Form (Dummy details default) */}
                 {cartItems.length > 0 && (
                   <form onSubmit={handleSendWhatsAppOrder} className="space-y-3 pt-2">
                     <div>
@@ -1260,8 +1280,8 @@ export default function OriginalBlueprintView({
                         onChange={(e) => setSelectedOutlet(e.target.value)}
                         className="w-full bg-white border border-[#E7D7C3] rounded-xl px-3 py-2 text-xs text-[#2B1B12] focus:outline-none focus:border-[#2F6B3F]"
                       >
-                        <option value="vijay-enclave">📍 Vijay Enclave Outlet (+91 9069453542)</option>
-                        <option value="futa-road">📍 C 6 60 Futa Road Branch (+91 9999039366)</option>
+                        <option value="vijay-enclave">📍 Outlet 1: Central Plaza (+91 98765 11111)</option>
+                        <option value="futa-road">📍 Outlet 2: Galleria Food Street (+91 98765 22222)</option>
                       </select>
                     </div>
 
@@ -1325,7 +1345,7 @@ export default function OriginalBlueprintView({
                   </button>
 
                   <div className="flex items-center justify-between text-[11px] text-[#715F50] px-1">
-                    <span>Dispatches to Hotline: <strong>9310681373</strong></span>
+                    <span>Dispatches to Hotline: <strong>9876500000</strong></span>
                     <button
                       onClick={onClearCart}
                       className="text-red-700 hover:underline flex items-center gap-1 font-semibold"
@@ -1352,7 +1372,7 @@ export default function OriginalBlueprintView({
                   Gunjan Snacks Printed Menu
                 </h3>
                 <p className="text-xs text-[#715F50]">
-                  Official kitchen price list for Vijay Enclave & Futa Road outlets
+                  Kitchen price list for Central Plaza & Galleria Food Street outlets
                 </p>
               </div>
               <button
@@ -1367,8 +1387,11 @@ export default function OriginalBlueprintView({
             <div className="space-y-3">
               <div className="rounded-2xl overflow-hidden border border-[#E7D7C3] bg-[#FFF8EC] p-3 text-center">
                 <img
-                  src={menuItems[0]?.image || '/images/tandoori-malai-chaap.jpg'}
+                  src={menuItems[0]?.image || `${BASE}images/tandoori-malai-chaap.jpg`}
                   alt="Menu Preview"
+                  onError={(e) => {
+                    e.currentTarget.src = getFoodFallbackImage('Tandoori Malai Chaap', 'chaps');
+                  }}
                   className="w-full h-56 object-cover rounded-xl"
                 />
                 <div className="mt-3 text-xs font-bold text-[#402315] flex items-center justify-center gap-2">
@@ -1378,8 +1401,8 @@ export default function OriginalBlueprintView({
               </div>
 
               <div className="bg-[#FFF8EC] p-3 rounded-xl border border-[#E7D7C3] text-xs text-[#715F50] space-y-1">
-                <p><strong>Hotline & WhatsApp:</strong> +91 93106 81373</p>
-                <p><strong>Outlets:</strong> 36A Block B Vijay Enclave & C 6 60 Futa Road Part 2, New Delhi</p>
+                <p><strong>Hotline & WhatsApp:</strong> +91 98765 00000</p>
+                <p><strong>Outlets:</strong> Central Market Food Plaza & Galleria Food Street, New Delhi</p>
               </div>
             </div>
 

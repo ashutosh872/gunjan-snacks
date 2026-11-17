@@ -101,7 +101,7 @@ export default function App() {
   const [isOrdersModalOpen, setIsOrdersModalOpen] = useState(false);
   const [isBranchModalOpen, setIsBranchModalOpen] = useState(false);
 
-  // Initialize dummy orders for customer 9310681373 on startup
+  // Initialize dummy orders on startup
   useEffect(() => {
     ensureDummyOrdersExist();
   }, []);

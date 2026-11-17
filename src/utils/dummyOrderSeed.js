@@ -1,6 +1,6 @@
 const BASE = import.meta.env.BASE_URL || '/';
 
-export const OWNER_PHONE = '9310681373';
+export const OWNER_PHONE = '9876500000';
 export const DUMMY_CUSTOMER_PHONE = '9812345678';
 
 export const initialDummyOrders = [
@@ -14,13 +14,13 @@ export const initialDummyOrders = [
     chefNotes: 'Make Malai Chaap extra creamy, extra green mint chutney and sliced onions please!',
     branch: {
       id: 'branch-1',
-      name: 'Gunjan Snacks - Central Market Branch',
-      shortName: 'Shop 1: Central Market',
-      area: 'Central Market, Sector 14',
-      address: 'Shop No. 14, Opposite Central Fountain, Main Market, Sector 14',
-      landmark: 'Near City Metro Gate 2 & Clock Tower',
-      phone: '+91 93106 81373',
-      ownerPhone: '9310681373'
+      name: 'Gunjan Snacks - Central Plaza (Main Outlet)',
+      shortName: 'Outlet 1: Central Plaza',
+      area: 'Central Market Food Plaza',
+      address: 'Shop No. 14, Central Market Food Plaza, Main Market, New Delhi 110001',
+      landmark: 'Opposite Central Fountain & Clock Tower',
+      phone: '+91 98765 00000',
+      ownerPhone: '9876500000'
     },
     items: [
       {
@@ -80,13 +80,13 @@ export const initialDummyOrders = [
     chefNotes: 'Keep gravies mild for family.',
     branch: {
       id: 'branch-2',
-      name: 'Gunjan Snacks - Galleria Food Street Branch',
-      shortName: 'Shop 2: Galleria Food Street',
-      area: 'Urban Galleria Food Street',
-      address: 'Kiosk No. 28, Urban Chowk Food Street, Opposite City Club',
-      landmark: 'Behind Grand Mall, Near Parking Gate B',
-      phone: '+91 93106 81373',
-      ownerPhone: '9310681373'
+      name: 'Gunjan Snacks - Galleria Food Street (Branch 2)',
+      shortName: 'Outlet 2: Galleria Food Street',
+      area: 'Urban Food Street Plaza',
+      address: 'Booth No. 8, Galleria Food Street, Urban Chowk, New Delhi 110001',
+      landmark: 'Near Parking Gate B & Food Court Entrance',
+      phone: '+91 98765 00000',
+      ownerPhone: '9876500000'
     },
     items: [
       {

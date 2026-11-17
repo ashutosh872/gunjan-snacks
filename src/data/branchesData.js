@@ -1,38 +1,38 @@
-export const SHOP_HOTLINE_PHONE = '9310681373';
+export const SHOP_HOTLINE_PHONE = '9876500000';
 
 export const branches = [
   {
     id: 'branch-1',
-    name: 'Gunjan Snacks - Vijay Enclave (Main Outlet)',
-    shortName: 'Outlet 1: Vijay Enclave',
-    area: 'Vijay Enclave, Mahavir Enclave',
-    address: '36A, Block B, Vijay Enclave, Mahavir Enclave, New Delhi, Delhi 110045',
-    landmark: 'Near City Metro Gate 2 & Clock Tower',
-    phone: '+91 93106 81373',
-    outletPhone: '+91 9069453542',
+    name: 'Gunjan Snacks - Central Plaza (Main Outlet)',
+    shortName: 'Outlet 1: Central Plaza',
+    area: 'Central Market Food Plaza',
+    address: 'Shop No. 14, Central Market Food Plaza, Main Market, New Delhi 110001',
+    landmark: 'Opposite Central Fountain & Clock Tower',
+    phone: '+91 98765 00000',
+    outletPhone: '+91 98765 11111',
     timings: '5:00 PM to 11:30 PM (Daily)',
     openingHour: 17, // 5 PM
     closingHour: 23,
     closingMinute: 30,
     prepTime: '15-20 mins',
-    mapQuery: '36A+Block+B+Vijay+Enclave+Mahavir+Enclave+New+Delhi',
+    mapQuery: 'Connaught+Place+New+Delhi',
     isPrimary: true,
   },
   {
     id: 'branch-2',
-    name: 'Gunjan Snacks - Futa Road Outlet (Part 2)',
-    shortName: 'Outlet 2: Futa Road (Part 2)',
-    area: 'Mahavir Enclave Part 2, Uttam Nagar',
-    address: 'C 6 60, Futa Road, Part-III, Mahavir Enclave Part 2, Uttam Nagar, New Delhi 110059',
-    landmark: 'Opposite Government Boys School, Futa Road',
-    phone: '+91 93106 81373',
-    outletPhone: '+91 9999039366',
+    name: 'Gunjan Snacks - Galleria Food Street (Branch 2)',
+    shortName: 'Outlet 2: Galleria Food Street',
+    area: 'Urban Food Street Plaza',
+    address: 'Booth No. 8, Galleria Food Street, Urban Chowk, New Delhi 110001',
+    landmark: 'Near Parking Gate B & Food Court Entrance',
+    phone: '+91 98765 00000',
+    outletPhone: '+91 98765 22222',
     timings: '5:00 PM to 11:30 PM (Daily)',
     openingHour: 17, // 5 PM
     closingHour: 23,
     closingMinute: 30,
     prepTime: '15-20 mins',
-    mapQuery: 'C+6+60+Futa+Road+Mahavir+Enclave+Part+2+New+Delhi',
+    mapQuery: 'India+Gate+New+Delhi',
     isPrimary: false,
   }
 ];

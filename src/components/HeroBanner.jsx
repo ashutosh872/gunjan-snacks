@@ -262,7 +262,7 @@ export default function HeroBanner({
                       100% Shudh Shakahari
                     </span>
                     <span className="text-amber-400 font-bold">
-                      Owner: 9310681373
+                      Hotline: +91 98765 00000
                     </span>
                   </div>
                 </div>

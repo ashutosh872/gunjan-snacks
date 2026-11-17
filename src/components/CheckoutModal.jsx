@@ -756,7 +756,7 @@ export default function CheckoutModal({
                   className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer transition shadow-xl shadow-emerald-950/60 transform active:scale-98"
                 >
                   <MessageCircle className="w-5 h-5 fill-white text-emerald-600" />
-                  <span>Send Order to Owner (WhatsApp: +91 98765 00000)</span>
+                  <span>Send Order to Owner (WhatsApp: +91 93106 81373)</span>
                 </button>
               </div>
 

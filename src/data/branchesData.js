@@ -1,4 +1,4 @@
-export const SHOP_HOTLINE_PHONE = '9876500000';
+export const SHOP_HOTLINE_PHONE = '9310681373';
 
 export const branches = [
   {

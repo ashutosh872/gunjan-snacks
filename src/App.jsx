@@ -30,12 +30,12 @@ export default function App() {
   const [activeView, setActiveView] = useState(() => {
     try {
       const params = new URLSearchParams(window.location.search);
-      if (params.get('view') === 'modern') return 'modern';
       if (params.get('view') === 'original') return 'original';
+      if (params.get('view') === 'modern') return 'modern';
       const saved = localStorage.getItem('gunjan_snacks_view');
-      return saved || 'original';
+      return saved || 'modern'; // Default to modern smart app (right toggle option)
     } catch {
-      return 'original';
+      return 'modern';
     }
   });
 
@@ -408,15 +408,15 @@ export default function App() {
         </div>
       )}
 
-      {/* Persistent Floating Experience Switcher (Always accessible) */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <div className="bg-[#2B1B12] text-[#FFF8EC] p-1.5 rounded-full shadow-2xl border-2 border-amber-600/60 flex items-center gap-1 backdrop-blur-md">
+      {/* Persistent Floating Experience Switcher (Positioned on bottom-right of web) */}
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
+        <div className="bg-zinc-950/95 text-white p-1.5 rounded-full shadow-2xl border-2 border-orange-500/80 flex items-center gap-1 backdrop-blur-md">
           <button
             onClick={() => handleToggleView('original')}
-            className={`px-3 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 ${
+            className={`px-3 sm:px-3.5 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer ${
               activeView === 'original'
                 ? 'bg-[#2F6B3F] text-white shadow-md'
-                : 'text-zinc-300 hover:text-white'
+                : 'text-zinc-400 hover:text-white'
             }`}
             title="Switch to original gunjansnacks.in blueprint"
           >
@@ -425,10 +425,10 @@ export default function App() {
           </button>
           <button
             onClick={() => handleToggleView('modern')}
-            className={`px-3 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 ${
+            className={`px-3 sm:px-3.5 py-1.5 rounded-full font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer ${
               activeView === 'modern'
-                ? 'bg-orange-600 text-white shadow-md'
-                : 'text-zinc-300 hover:text-white'
+                ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg shadow-orange-950/60'
+                : 'text-zinc-400 hover:text-white'
             }`}
             title="Switch to modern social table dine-in app"
           >
